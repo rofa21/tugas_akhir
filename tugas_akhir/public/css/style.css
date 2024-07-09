@@ -1,3 +1,50 @@
 h1{
     color: aqua;
 }
+
+.navbar-brand .text-orange {
+    color: orange;
+    font-weight: bold;
+}
+.navbar-brand .text-white {
+    color: white;
+    font-weight: bold;
+}
+
+
+.navbar-links {
+    margin-right: 40px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+.navbar-links::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+.navbar-links:hover::after, .navbar-links:focus::after, .navbar-links:active::after {
+    background-color: orange;
+}
+.dorong{
+    margin-right: 40px;
+}
+
+.eshop-title {
+    text-align: center;
+    margin: 50px;
+    padding: 30px;
+    font-weight: bold;
+}
+.eshop-title .text-orange {
+    color: orange;
+}
+.eshop-title .text-black {
+    color: black;
+    font-weight: bold;
+}

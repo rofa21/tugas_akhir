@@ -3,8 +3,16 @@
 @extends('layouts.master')
 
 @section('container')
-<div class="container mt-5">
-    <h1>Daftar Barang</h1>
+
+<h1 class="eshop-title">
+            <span class="text-orange">E</span>-SHOP
+        </h1>
+
+<div class="container mt-5 custom-mt-10">
+<button type="button" class="btn btn-success float-end custom-margin-right">Success</button>
+    <h4>List Barang</h4>
+    
+
     <div class="row">
         @foreach($barangs as $barang)
             <div class="col-md-4 mb-4">
