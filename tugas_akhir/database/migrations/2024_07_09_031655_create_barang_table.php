@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('barang', function (Blueprint $table) {
-            $table->id();
+            $table->renameColumn('id', 'id_barang'); // Mengubah nama kolom 'id' menjadi 'id_barang'
             $table->string('nama');
             $table->string('merek');
             $table->string('gambar');
@@ -30,5 +30,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('barang');
+        $table->renameColumn('id_barang', 'id'); // Mengembalikan nama kolom 'id_barang' menjadi 'id'
     }
 };
