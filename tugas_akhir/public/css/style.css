@@ -153,3 +153,32 @@ h1{
 .text-orange {
     color: orange;
 }
+
+
+
+
+.carousel-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.carousel {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.carousel-image {
+    height: 800px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 1050px;
+}
+
+.container{
+    padding: 20px;
+   
+    margin: 60px;
+}

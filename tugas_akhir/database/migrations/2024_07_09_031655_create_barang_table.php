@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('merek');
             $table->string('gambar');
             $table->integer('stok_barang');
+            $table->integer('ukuran');
+            $table->string('warna');
             $table->decimal('harga', 10, 2);
             $table->text('deskripsi');
             $table->timestamps();
