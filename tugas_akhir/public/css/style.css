@@ -217,7 +217,7 @@ h1{
 }
 
 .cart-item {
-    height: 80px;
+    height: 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;

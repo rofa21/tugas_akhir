@@ -25,7 +25,7 @@
             <span class="product-name">{{ $item['nama'] }}</span>
             <span class="product-brand">{{ $item['merek'] }}</span>
             <span class="product-size">{{ $item['ukuran'] }}</span>
-            <span class="product-color">{{ $item['warna'] ?? 'N/A' }}</span> <!-- Pastikan ini ada -->
+            <span class="product-color">{{ $item['warna'] ?? 'N/A' }}</span>
             <span class="product-price">Rp. {{ number_format($item['harga'], 0, ',', '.') }}</span>
             
             <button class="btn btn-danger btn-sm remove-button" data-id="{{ $item['id'] }}">Hapus</button>
@@ -49,9 +49,9 @@
             <span>Total Beli:</span>
             <span>Rp. {{ number_format(collect($items)->sum('harga'), 0, ',', '.') }}</span>
         </div>
-        <form action="{{ route('keranjang.purchase') }}" method="POST">
+        <form action="{{ route('transaksi.index') }}" method="GET">
             @csrf
-            <input type="hidden" name="selected_items" id="selected-items">
+            <input type="hidden" name="barang_ids[]" id="selected-items" value="{{ $item['id'] }}">
             <button type="submit" class="btn btn-success">Beli</button>
         </form>
     </div>
