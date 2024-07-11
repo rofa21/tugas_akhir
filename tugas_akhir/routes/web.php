@@ -23,3 +23,7 @@ Route::post('/keranjang/purchase', [KeranjangController::class, 'purchase'])->na
 Route::post('/transaksi/selesai', [TransaksiController::class, 'selesai'])->name('transaksi.selesai');
 Route::post('/keranjang/remove/{id}', [KeranjangController::class, 'removeFromCart'])->name('keranjang.remove');
 Route::post('/keranjang/remove-multiple', [KeranjangController::class, 'removeMultiple'])->name('keranjang.remove-multiple');
+
+Route::get('/admin', function () {
+    return view('admin.homead');
+});
