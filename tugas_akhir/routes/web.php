@@ -27,3 +27,11 @@ Route::post('/keranjang/remove-multiple', [KeranjangController::class, 'removeMu
 Route::get('/admin', function () {
     return view('admin.homead');
 });
+
+Route::get('/user', function () {
+    return view('admin.pelanggan');
+});
+
+Route::get('/laporan', function () {
+    return view('admin.laporan');
+});

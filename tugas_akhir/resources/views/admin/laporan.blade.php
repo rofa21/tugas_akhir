@@ -1,7 +1,6 @@
+@extends('admin.layout.masterad')
 
-
-@include('admin.bagian.sidebarad')
-@include('admin.bagian.headerad')
+@section('content')
 
 <body>
 <div class="content">
@@ -27,33 +26,31 @@
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Nama Barang</th>
-                    <th>Warna</th>
-                    <th>Merek</th>
-                    <th>Harga</th>
-                    <th>Ukuran</th>
-                    
-                    <th>Stok</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Barang</th>
+                    <th>Metode Pengiriman</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Jumlah Beli</th>
+                    <th>Total Bayar</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Sepatu Sekolah</td>
-                    <td><img src="img/adidas.jpg" alt="" height="200px" width="200px"></td>
-                    <td>Adidas</td>
-                    <td>Rp 1.000.000</td>
-                    <td>50</td>
-                    
-                    <td>23</td>
+                    <td>Ahmad Subarjo/td>
+                    <td>Sepati Sports</td>
+                    <td>JNE</td>
+                    <td>BRI</td>
+                    <td>1</td>
+                    <td>Rp.150.000</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Edit</button>
                         <button class="btn btn-success btn-sm">Detail</button>
                         <button class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                 </tr>
-                
+            
                 <!-- Tambahkan lebih banyak data sesuai kebutuhan -->
             </tbody>
         </table>
@@ -107,4 +104,5 @@
 </html>
 
 <script src="{{ asset('js/admin/fresh.js') }}"></script>
-@yield('content')
+
+@endsection
