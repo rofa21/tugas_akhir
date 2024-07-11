@@ -275,3 +275,11 @@ h1{
 .summary .btn-purchase {
     justify-content: center;
 }
+
+
+
+.row{
+    border: 2px solid #ccc; /* Border tebal dengan warna abu-abu */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
