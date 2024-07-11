@@ -1,5 +1,6 @@
 <?php
 // app/Http/Controllers/KeranjangController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
@@ -41,13 +42,45 @@ class KeranjangController extends Controller
 
     public function purchase(Request $request)
     {
-        $selectedItems = $request->input('selected_items');
+        $selectedItems = $request->input('selected_items', []);
 
-        // Logika untuk memproses pembelian
+        // Simpan data barang yang dipilih ke dalam session
+        session(['checkout_items' => $selectedItems]);
 
         return redirect()->route('transaksi.index')->with('success', 'Pembelian berhasil diproses.');
     }
+
+    
+    public function removeFromCart($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function removeMultiple(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        $cart = session()->get('cart', []);
+
+        foreach ($ids as $id) {
+            if (isset($cart[$id])) {
+                unset($cart[$id]);
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        return response()->json(['success' => true]);
+    }
 }
+
+
 
 
 
