@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\BarangadController;
 
 Route::get('/', [BarangController::class, 'index']);
 
@@ -24,9 +25,9 @@ Route::post('/transaksi/selesai', [TransaksiController::class, 'selesai'])->name
 Route::post('/keranjang/remove/{id}', [KeranjangController::class, 'removeFromCart'])->name('keranjang.remove');
 Route::post('/keranjang/remove-multiple', [KeranjangController::class, 'removeMultiple'])->name('keranjang.remove-multiple');
 
-Route::get('/admin', function () {
-    return view('admin.homead');
-});
+Route::get('/admin', [BarangadController::class, 'index'])->name('admin.barang');
+Route::post('/barang/store', [BarangadController::class, 'store'])->name('barang.store');
+
 
 Route::get('/user', function () {
     return view('admin.pelanggan');

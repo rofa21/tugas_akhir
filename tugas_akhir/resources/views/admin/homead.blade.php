@@ -1,5 +1,3 @@
-
-
 @include('admin.bagian.sidebarad')
 @include('admin.bagian.headerad')
 
@@ -22,39 +20,43 @@
             <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Tambah Barang</button>
         </div>
     </div>
+
     <div class="table-wrapper">
         <table id="barangTable" class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Nama Barang</th>
-                    <th>Warna</th>
+                    <th>Gambar</th>
                     <th>Merek</th>
                     <th>Harga</th>
                     <th>Ukuran</th>
-                    
+                    <th>Warna</th>
                     <th>Stok</th>
+                    <th>Deskripsi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Sepatu Sekolah</td>
-                    <td><img src="img/adidas.jpg" alt="" height="200px" width="200px"></td>
-                    <td>Adidas</td>
-                    <td>Rp 1.000.000</td>
-                    <td>50</td>
-                    
-                    <td>23</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-success btn-sm">Detail</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                
-                <!-- Tambahkan lebih banyak data sesuai kebutuhan -->
+                @foreach ($barang as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->nama }}</td>
+                        <td><img src="{{ asset('storage/'.$item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
+
+                        <td>{{ $item->merek }}</td>
+                        <td>{{ $item->harga }}</td>
+                        <td>{{ $item->ukuran }}</td>
+                        <td>{{ $item->warna }}</td>
+                        <td>{{ $item->stok_barang }}</td>
+                        <td>{{ $item->deskripsi }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Edit</button>
+                            <button class="btn btn-success btn-sm">Detail</button>
+                            <button class="btn btn-danger btn-sm">Hapus</button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -70,38 +72,54 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="addForm">
+            <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="namaBarang">Nama Barang</label>
-                        <input type="text" class="form-control" id="namaBarang" required>
+                        <label for="nama">Nama Barang</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="form-group">
-                        <label for="kategoriBarang">Kategori</label>
-                        <select class="form-control" id="kategoriBarang" required>
-                            <option value="elektronik">Elektronik</option>
-                            <option value="fashion">Fashion</option>
-                            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
-                        </select>
+                        <label for="merek">Merek</label>
+                        <input type="text" class="form-control" id="merek" name="merek" required>
                     </div>
                     <div class="form-group">
-                        <label for="hargaBarang">Harga</label>
-                        <input type="number" class="form-control" id="hargaBarang" required>
+                        <label for="harga">Harga</label>
+                        <input type="number" class="form-control" id="harga" name="harga" required>
                     </div>
                     <div class="form-group">
-                        <label for="stokBarang">Stok</label>
-                        <input type="number" class="form-control" id="stokBarang" required>
+                        <label for="gambar">Gambar</label>
+                        <input type="file" class="form-control-file" id="gambar" name="gambar" accept="image/*" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Tambah</button>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="ukuran">Ukuran</label>
+                        <input type="text" class="form-control" id="ukuran" name="ukuran">
+                    </div>
+                    <div class="form-group">
+                        <label for="warna">Warna</label>
+                        <input type="text" class="form-control" id="warna" name="warna">
+                    </div>
+                    <div class="form-group">
+                        <label for="stok_barang">Stok Barang</label>
+                        <input type="number" class="form-control" id="stok_barang" name="stok_barang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-   
 
 </body>
 </html>

@@ -21,7 +21,7 @@
         @foreach($barangs as $barang)
             <div class="col-md-4 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('img/' . $barang->gambar) }}" class="card-img-top" alt="{{ $barang->nama }}">
+                    <img src="{{ url('storage/uploads/'.$barang->gambar) }}"  class="card-img-top" alt="{{ $barang->nama }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $barang->nama }}</h5>
                         <p class="card-text">{{ $barang->merek }}</p>
