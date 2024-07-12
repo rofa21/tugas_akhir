@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BarangadController extends Controller
 {
@@ -29,7 +30,7 @@ class BarangadController extends Controller
         ]);
 
         // Upload gambar
-        $gambarPath = $request->file('gambar')->store('uploads');
+        $gambarPath = $request->file('gambar')->store('uploads', 'public');
 
         // Simpan data barang ke dalam database
         $barang = new Barang();
@@ -45,4 +46,37 @@ class BarangadController extends Controller
 
         return redirect()->back()->with('success', 'Barang berhasil ditambahkan.');
     }
+
+    public function updatedata($id) {
+        $barang = Barang::find($id);
+        return view('admin.barang.edit', compact('barang'));
+    }
+    
+    public function update(Request $request, $id)
+{
+    $barang = Barang::find($id);
+
+    $barang->update($request->only(['nama', 'merek', 'harga', 'ukuran', 'warna', 'stok_barang', 'deskripsi']));
+
+    if ($request->hasFile('gambar')) {
+        // Upload and update gambar
+        $gambarPath = $request->file('gambar')->store('uploads', 'public');
+        $barang->gambar = $gambarPath;
+    }
+
+    $barang->save(); // Simpan perubahan
+
+    return redirect('/admin');
+}
+
+public function destroy($id)
+{
+   $barang= Barang::find($id);
+   $barang->delete();
+   return redirect('/admin')->with('data berhasil dihapus'); 
+}
+
+
+    
+  
 }

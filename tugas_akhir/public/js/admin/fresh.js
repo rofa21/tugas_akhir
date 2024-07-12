@@ -42,3 +42,33 @@ $(document).ready(function(){
         $("#addForm")[0].reset();
     });
 });
+
+
+//edit
+// fresh.js
+
+$(document).ready(function() {
+    $('.btn-edit').click(function() {
+        // Mendapatkan nilai dari atribut data-* tombol Edit
+        var id = $(this).data('id');
+        var nama = $(this).data('nama');
+        var merek = $(this).data('merek');
+        var harga = $(this).data('harga');
+        var ukuran = $(this).data('ukuran');
+        var warna = $(this).data('warna');
+        var stok_barang = $(this).data('stok_barang');
+        var deskripsi = $(this).data('deskripsi');
+
+        // Mengisi nilai-nilai ke dalam form modal edit
+        $('#edit_id').val(id);
+        $('#edit_nama').val(nama);
+        $('#edit_merek').val(merek);
+        $('#edit_harga').val(harga);
+        $('#edit_ukuran').val(ukuran);
+        $('#edit_warna').val(warna);
+        $('#edit_stok_barang').val(stok_barang);
+        $('#edit_deskripsi').val(deskripsi);
+    });
+});
+
+

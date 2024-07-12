@@ -42,8 +42,7 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td><img src="{{ asset('storage/'.$item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
-
+                        <td><img src="{{ asset('storage/uploads/' . $item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
                         <td>{{ $item->merek }}</td>
                         <td>{{ $item->harga }}</td>
                         <td>{{ $item->ukuran }}</td>
@@ -51,9 +50,9 @@
                         <td>{{ $item->stok_barang }}</td>
                         <td>{{ $item->deskripsi }}</td>
                         <td>
-                            <button class="btn btn-primary btn-sm">Edit</button>
+                        <a class="btn btn-primary ml-3" href="/update/{{$item->id}}" role="button">Edit</a>
                             <button class="btn btn-success btn-sm">Detail</button>
-                            <button class="btn btn-danger btn-sm">Hapus</button>
+                            <a class="btn btn-danger ml-3" href="/delete/{{$item->id}}" role="button">Hapus</a> 
                         </td>
                     </tr>
                 @endforeach
@@ -118,11 +117,6 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
 
 <script src="{{ asset('js/admin/fresh.js') }}"></script>
 @yield('content')

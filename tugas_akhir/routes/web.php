@@ -36,3 +36,6 @@ Route::get('/user', function () {
 Route::get('/laporan', function () {
     return view('admin.laporan');
 });
+Route::get('/update/{id}', [BarangadController::class, 'updatedata']);
+Route::post('/upload/{id}', [BarangadController::class, 'update']);
+Route::get('/delete/{id}', [BarangadController::class, 'destroy']);
