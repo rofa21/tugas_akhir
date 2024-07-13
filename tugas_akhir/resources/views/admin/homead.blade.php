@@ -42,7 +42,7 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td><img src="{{ asset('storage/uploads/' . $item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
+                        <td><img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
                         <td>{{ $item->merek }}</td>
                         <td>{{ $item->harga }}</td>
                         <td>{{ $item->ukuran }}</td>

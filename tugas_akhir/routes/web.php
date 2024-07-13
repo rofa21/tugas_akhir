@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\BarangadController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [BarangController::class, 'index']);
 
@@ -39,3 +40,15 @@ Route::get('/laporan', function () {
 Route::get('/update/{id}', [BarangadController::class, 'updatedata']);
 Route::post('/upload/{id}', [BarangadController::class, 'update']);
 Route::get('/delete/{id}', [BarangadController::class, 'destroy']);
+
+
+Route::get('/laporan', [UserController::class, 'tabeltransaksi']);
+
+
+Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+
+
+Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+Route::post('/transaksi/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
+
+

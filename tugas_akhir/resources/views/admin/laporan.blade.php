@@ -36,23 +36,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Ahmad Subarjo/td>
-                    <td>Sepati Sports</td>
-                    <td>JNE</td>
-                    <td>BRI</td>
-                    <td>1</td>
-                    <td>Rp.150.000</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-success btn-sm">Detail</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-            
-                <!-- Tambahkan lebih banyak data sesuai kebutuhan -->
-            </tbody>
+        @foreach($transaksis as $transaksi)
+        <tr>
+            <td>{{ $transaksi->id_transaksi }}</td>
+            <td>{{ $transaksi->nama_pelanggan }}</td>
+            <td>{{ $transaksi->nama_barang }}</td>
+            <td>{{ $transaksi->pengiriman }}</td>
+            <td>{{ $transaksi->metode_pembayaran }}</td>
+            <td>{{ $transaksi->jumlah }}</td>
+            <td>Rp.{{ number_format($transaksi->total_bayar, 0, ',', '.') }}</td>
+            <td>
+            <a href="{{ route('transaksi.edit', $transaksi->id_transaksi) }}" class="btn btn-primary btn-sm">Edit</a>
+                <button class="btn btn-success btn-sm">Detail</button>
+                <button class="btn btn-danger btn-sm">Hapus</button>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
         </table>
     </div>
 </div>
@@ -68,29 +68,62 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addForm">
-                    <div class="form-group">
-                        <label for="namaBarang">Nama Barang</label>
-                        <input type="text" class="form-control" id="namaBarang" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="kategoriBarang">Kategori</label>
-                        <select class="form-control" id="kategoriBarang" required>
-                            <option value="elektronik">Elektronik</option>
-                            <option value="fashion">Fashion</option>
-                            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="hargaBarang">Harga</label>
-                        <input type="number" class="form-control" id="hargaBarang" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="stokBarang">Stok</label>
-                        <input type="number" class="form-control" id="stokBarang" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Tambah</button>
-                </form>
+                <!-- resources/views/admin/laporan.blade.php -->
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <form id="addForm" action="/transaksi" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="namaPelanggan">Nama Pelanggan</label>
+        <select class="form-control" id="namaPelanggan" name="user_id" required>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}">{{ $user->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="namaBarang">Nama Barang</label>
+        <select class="form-control" id="namaBarang" name="barang_id" required>
+           @foreach($barang as $barangl)
+                <option value="{{ $barangl->id }}">{{ $barangl->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="metodePengiriman">Metode Pengiriman</label>
+        <select class="form-control" id="metodePengiriman" name="metode_pengiriman" required>
+            <option value="jne">JNE</option>
+            <option value="jt">J&T</option>
+            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="metodePembayaran">Metode Pembayaran</label>
+        <select class="form-control" id="metodePembayaran" name="metode_pembayaran" required>
+            <option value="cod">COD</option>
+            <option value="bri">BRI</option>
+            <option value="dana">DANA</option>
+            <option value="bni">BNI</option>
+            <option value="bca">BCA</option>
+            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="tanggal">Tanggal</label>
+        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+    </div>
+    <div class="form-group">
+        <label for="jumlahBeli">Jumlah Beli</label>
+        <input type="number" class="form-control" id="jumlahBeli" name="jumlah_beli" required>
+    </div>
+   
+    <button type="submit" class="btn btn-success">Tambah</button>
+</form>
             </div>
         </div>
     </div>
@@ -103,6 +136,6 @@
 </body>
 </html>
 
-<script src="{{ asset('js/admin/fresh.js') }}"></script>
+
 
 @endsection
