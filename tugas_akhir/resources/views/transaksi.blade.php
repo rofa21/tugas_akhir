@@ -9,9 +9,9 @@
         @foreach($barangs as $barang)
         <div class="row mb-4 barang-item" data-harga="{{ $barang->harga }}">
             <div class="col-md-4">
-                <img src="{{ asset('img/' . $barang->gambar) }}" alt="Product Image" class="product-image">
+                <img src="{{ asset('storage/' . $barang->gambar) }}" alt="Product Image" class="product-image" height="300px" width="300px">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-5">
                 <h5>Nama Barang: {{ $barang->nama }}</h5>
                 <p>Merek: {{ $barang->merek }}</p>
                 <p>Harga: RP. {{ number_format($barang->harga, 0, ',', '.') }}</p>
@@ -42,18 +42,19 @@
         <div class="form-group">
             <label for="pengiriman">Metode Pengiriman:</label>
             <select class="form-control" id="pengiriman" name="metode_pengiriman" required>
-                <option value="jne">JNE</option>
-                <option value="pos">POS</option>
-                <option value="tiki">TIKI</option>
+                <option value="12000">JNE</option>
+                <option value="13000">POS</option>
+                <option value="10000">TIKI</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="total">Total:</label>
-            <input type="text" class="form-control" id="total" readonly>
+            <input type="text" class="form-control" id="total" name="total" readonly>
         </div>
 
-        <button type="submit" class="btn btn-primary">Selesai</button>
+        <button type="submit" class="btn btn-success">Selesai</button>
+        <a class="btn btn-primary" href="/keranjang" role="button">Kembali</a>
     </form>
 </div>
 

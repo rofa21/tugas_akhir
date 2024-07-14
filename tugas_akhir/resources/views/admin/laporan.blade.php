@@ -1,23 +1,17 @@
 @extends('admin.layout.masterad')
 
 @section('content')
-
+<style>
+    .content{
+        margin-top: -70px;
+    }
+</style>
 <body>
 <div class="content">
-    <h1>Data Barang</h1>
+    <h1>Data Transaksi</h1>
     <div class="row mb-3">
-        <div class="col-md-4">
-            <input id="search" type="text" class="form-control" placeholder="Cari Barang...">
-        </div>
-        <div class="col-md-4">
-            <select id="categoryFilter" class="form-control">
-                <option value="all">Semua Kategori</option>
-                <option value="elektronik">Elektronik</option>
-                <option value="fashion">Fashion</option>
-                <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
-            </select>
-        </div>
-        <div class="col-md-4 text-right">
+       
+    <div class="col-md-4 ml-auto text-right">
             <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Tambah Barang</button>
         </div>
     </div>
@@ -25,7 +19,7 @@
         <table id="barangTable" class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama Pelanggan</th>
                     <th>Barang</th>
                     <th>Metode Pengiriman</th>
@@ -38,7 +32,7 @@
             <tbody>
         @foreach($transaksis as $transaksi)
         <tr>
-            <td>{{ $transaksi->id_transaksi }}</td>
+        <td>{{ $loop->iteration }}</td>
             <td>{{ $transaksi->nama_pelanggan }}</td>
             <td>{{ $transaksi->nama_barang }}</td>
             <td>{{ $transaksi->pengiriman }}</td>
@@ -47,8 +41,8 @@
             <td>Rp.{{ number_format($transaksi->total_bayar, 0, ',', '.') }}</td>
             <td>
             <a href="{{ route('transaksi.edit', $transaksi->id_transaksi) }}" class="btn btn-primary btn-sm">Edit</a>
-                <button class="btn btn-success btn-sm">Detail</button>
-                <button class="btn btn-danger btn-sm">Hapus</button>
+                
+                <a class="btn btn-danger ml-3" href="/hapus/{{$transaksi->id_transaksi}}" role="button">Hapus</a> 
             </td>
         </tr>
         @endforeach

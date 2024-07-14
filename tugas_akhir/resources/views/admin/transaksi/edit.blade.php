@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="content">
-    <form id="editForm" action="/transaksi/{$transaksi->id_transaksi}"  method="POST">
+    <form id="editForm" action="/transaksi/{{$transaksi->id_transaksi}}"  method="POST">
         @csrf
         
         <div class="modal-body">
             <div class="form-group">
                 <label for="namaPelanggan">Nama Pelanggan</label>
-                <select class="form-control" id="namaPelanggan" name="user_id" required>
+                <select class="form-control" id="namaPelanggan" name="id_user" required>
                     @foreach($users as $user)
                         <option value="{{ $user->id}}" {{ $transaksi->id_user == $user->id ? 'selected' : '' }}>{{ $user->nama }}</option>
                     @endforeach
@@ -16,15 +16,15 @@
             </div>
             <div class="form-group">
                 <label for="namaBarang">Nama Barang</label>
-                <select class="form-control" id="namaBarang" name="barang_id" required>
+                <select class="form-control" id="namaBarang" name="id_barang" required>
                    @foreach($barang as $barangl)
-                        <option value="{{ $barangl->id }}" {{ $transaksi->id_barang == $barangl->id ? 'selected' : '' }}>{{ $barangl->nama }}</option>
+                        <option value="{{ $barangl->id}}" {{ $transaksi->id_barang == $barangl->id ? 'selected' : '' }}>{{ $barangl->nama }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
                 <label for="metodePengiriman">Metode Pengiriman</label>
-                <select class="form-control" id="metodePengiriman" name="metode_pengiriman" required>
+                <select class="form-control" id="metodePengiriman" name="pengiriman" required>
                     <option value="jne" {{ $transaksi->pengiriman == 'jne' ? 'selected' : '' }}>JNE</option>
                     <option value="jt" {{ $transaksi->pengiriman == 'jt' ? 'selected' : '' }}>J&T</option>
                     <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label for="jumlahBeli">Jumlah Beli</label>
-                <input type="number" class="form-control" id="jumlahBeli" name="jumlah_beli" value="{{ $transaksi->jumlah }}" required>
+                <input type="number" class="form-control" id="jumlahBeli" name="jumlah" value="{{ $transaksi->jumlah }}" required>
             </div>
 
             <button type="submit" class="btn btn-success">Perbarui</button>

@@ -15,7 +15,7 @@
             <a class="nav-link" href="/laporan"><i class="fas fa-shopping-cart"></i> Transaksi</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a class="nav-link" href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </li>
     </ul>
 </div>

@@ -12,15 +12,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active navbar-links" aria-current="page" href="/" style="color:white;">Home</a>
+                        <a class="nav-link active navbar-links" aria-current="page" href="/home" style="color:white;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link navbar-links" href="/keranjang" style="color:white;">Keranjang</a>
                     </li>
+                  
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link navbar-links" href="/" style="color:white;">Logout</a>
+                    </li>
                 </form>
             </div>
         </div>

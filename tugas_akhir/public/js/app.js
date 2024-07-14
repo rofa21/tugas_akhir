@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const jumlahInputs = document.querySelectorAll('.jumlah');
     const totalInput = document.getElementById('total');
+    const pengirimanInput = document.getElementById('pengiriman');
 
     function updateTotal() {
         let total = 0;
@@ -9,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const jumlah = parseInt(input.value);
             total += harga * jumlah;
         });
+        const biayaPengiriman = parseFloat(pengirimanInput.value);
+        total += biayaPengiriman;
         totalInput.value = 'RP. ' + total.toLocaleString('id-ID', {minimumFractionDigits: 0});
     }
 
@@ -16,8 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
         input.addEventListener('change', updateTotal);
     });
 
+    pengirimanInput.addEventListener('change', updateTotal);
+
     updateTotal();
 });
+
 
 
 
@@ -108,4 +114,32 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+});
+
+
+//selesai
+document.addEventListener('DOMContentLoaded', function () {
+    const jumlahInputs = document.querySelectorAll('.jumlah');
+    const totalInput = document.getElementById('total');
+    const pengirimanInput = document.getElementById('pengiriman');
+
+    function updateTotal() {
+        let total = 0;
+        jumlahInputs.forEach(input => {
+            const harga = parseFloat(input.getAttribute('data-harga'));
+            const jumlah = parseInt(input.value);
+            total += harga * jumlah;
+        });
+        const biayaPengiriman = parseFloat(pengirimanInput.value);
+        total += biayaPengiriman;
+        totalInput.value = 'RP. ' + total.toLocaleString('id-ID', {minimumFractionDigits: 0});
+    }
+
+    jumlahInputs.forEach(input => {
+        input.addEventListener('change', updateTotal);
+    });
+
+    pengirimanInput.addEventListener('change', updateTotal);
+
+    updateTotal();
 });

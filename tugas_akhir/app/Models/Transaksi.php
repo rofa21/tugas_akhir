@@ -10,11 +10,12 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_transaksi';
+    protected $table = 'transaksis'; // Jika nama tabel tidak default
+    protected $primaryKey = 'id_transaksi'; // Tentukan primary key yang benar
 
-    public $incrementing = false;
 
     protected $fillable = [
+        
         'id_user',
         'id_barang',
         'pengiriman',

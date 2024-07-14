@@ -4,6 +4,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
+
 h1{
     color: aqua;
 }
@@ -16,16 +17,29 @@ h1{
 }
 
 
+.row1 {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc; /* Ganti warna dan ketebalan border sesuai kebutuhan */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px; /* Jarak antar item */
+    padding: 10px;
+    padding-top: 50px;
+    padding-left: 60px;
+    margin-bottom: 50px;
+}
+
 .wrapper {
     width: 420px;
-    border:2px solid rgba(255, 255, 255, .2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
-    box-sizing: 0 0 10px rgba(0, 0, 0, .2);
-    background: transparent; /sesuai backgound/
-    color: #fff;
+    box-sizing: border-box;
+    background: rgb(43, 46, 44);
+    color: #b1b1b1;
     border-radius: 10px;
     padding: 30px 40px;
-    background: rgb(44, 150, 97); /* ganti dengan gambar yang sesuai*/
+    
+    margin: 200px auto; /* Menggunakan 'auto' untuk mengatur margin secara otomatis dan '200px' untuk margin atas dan bawah */
 }
 
 .wrapper h1 {
@@ -36,7 +50,7 @@ h1{
 .wrapper .input-box {
     width: 100%;
     height: 50px;
-    background: rgb(224, 224, 224);
+   
     margin: 30px 0;
 }
 
@@ -51,10 +65,11 @@ h1{
     font-size: 16px;
     color: #8b8383;
     padding: 20px 45px 20px 20px;
+    border-radius: 5px;
 }
 
 .input-box input::placeholder {
-    color: #0a0808;
+    color: #b6b6b6;
 }
 
 .input-box i {
@@ -90,18 +105,8 @@ h1{
     text-decoration: underline;
 }
 
-.wrapper.btn {
-    width: 100%;
-    height: 45px;
-    background: #fff;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
+.btn{
+    color: #dee2e6;
 }
 
 .wrapper .register-link {
@@ -179,8 +184,9 @@ h1{
 
 .container{
     padding: 20px;
+    margin-top: 50px;
    
-    margin: 60px;
+    
 }
 
 
@@ -279,7 +285,150 @@ h1{
 
 
 .row{
-    border: 2px solid #ccc; /* Border tebal dengan warna abu-abu */
+    
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
+}
+
+
+
+
+
+.form{
+	width: 650px;
+	background: rgb(43, 46, 44);
+	border-radius: 10px;
+	color: #fff;
+    padding: 40px 35px 55px;
+    margin: 380px;
+}
+
+.form h1{
+	font-size: 36px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form .input-box{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+    
+}
+
+.input-box .input-field{
+    position: relative;
+    width: 48%;
+    height: 50px;
+    margin: 13px 0;
+   
+}
+
+.input-box .input-field input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 6px;
+    padding: 15px 15px 15px 40px;
+}
+
+.input-box .input-field input::placeholder{
+    color: rgb(255, 255, 255);
+}
+
+.input-box .input-field i{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form label{
+    display: inline-block;
+    font-size: 14.5px;
+    margin: 10px 0 23px;
+}
+
+.form label input{
+    accent-color: #fff;
+    margin-right: 5px;
+}
+
+.form .btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-left: 10px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.product-details span {
+    margin: 2px 0;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.product-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.product-button{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: -5px;
+    
+  
 }

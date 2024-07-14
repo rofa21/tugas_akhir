@@ -2,18 +2,25 @@
 
 // routes/web.php
 
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\BarangadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
-Route::get('/', [BarangController::class, 'index']);
+Route::get('/home', [BarangController::class, 'index']);
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/barang/{id}', [BarangController::class, 'show'])->name('barang.show');
 
-Route::get('/login', function () {
+Route::get('/kembali', function () {
     return view('welcome');
 });
 
@@ -51,4 +58,16 @@ Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaks
 Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
 Route::post('/transaksi/{id_transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 
+Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::get('/destroy/{id}', [UserController::class, 'destroy'])->name('pelanggan');
 
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::get('/user', [AdminController::class, 'showUsers'])->name('admin.users');
+Route::get('/hapus/{id_transaksi}', [TransaksiController::class, 'hapus'])->name('admin.users');
+
+Route::post('/transaksi/selesai', [TransaksiController::class, 'rampung'])->name('transaksi.selesai');
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');

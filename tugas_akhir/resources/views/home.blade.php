@@ -14,14 +14,14 @@
         </div>
     </div>
     
-    <button type="button" class="btn btn-success float-end custom-margin-right">Success</button>
+    
     <h4>List Barang</h4>
 
-    <div class="row">
+    <div class="row1">
         @foreach($barangs as $barang)
             <div class="col-md-4 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ url('storage/uploads/'.$barang->gambar) }}"  class="card-img-top" alt="{{ $barang->nama }}">
+                    <img src="{{ url('storage/'.$barang->gambar) }}"  class="card-img-top" alt="{{ $barang->nama }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $barang->nama }}</h5>
                         <p class="card-text">{{ $barang->merek }}</p>
@@ -33,6 +33,7 @@
             </div>
         @endforeach
     </div>
+   
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>

@@ -79,23 +79,27 @@ class TransaksiController extends Controller
 
     public function edit($id)
     {
+        
+        
         // Mengambil transaksi berdasarkan id_transaksi
         $transaksi = Transaksi::where('id_transaksi', $id)->firstOrFail();
     
         // Mengambil semua data user dan barang
         $users = User::all();
         $barang = Barang::all();
-    
+         
+       
+       
         // Mengembalikan view edit dengan data yang diperoleh
         return view('admin.transaksi.edit', compact('transaksi', 'users', 'barang'));
     }
     
     public function update(Request $request, $id)
 {
-    // Tampilkan semua data yang diterima dari request
-
-
-    // Validasi data
+   
+ try {
+   
+   
     $request->validate([
         'id_user' => 'required|exists:users,id',
         'id_barang' => 'required|exists:barang,id',
@@ -106,23 +110,64 @@ class TransaksiController extends Controller
     ]);
 
     // Mengambil transaksi berdasarkan id
-    $transaksi = Transaksi::find($id);
-    $transaksi->update($request->only(['id_user', 'id_barang', 'pengiriman', 'metode_pembayaran', 'tanggal', 'jumlah']));
-
+    $transaksi = Transaksi::where('id_transaksi', $id)->firstOrFail();
+   
+    $transaksi->update([
+        
+        'id_user' => $request->id_user,
+        'id_barang' => $request->id_barang,
+        'pengiriman' => $request->pengiriman,
+        'metode_pembayaran' => $request->metode_pembayaran,
+        'tanggal' => $request->tanggal,
+        'jumlah' => $request->jumlah
+    ]);
+   
     // Simpan perubahan
     $transaksi->save();
-    dd($request->all());
     // Redirect ke halaman admin
     return redirect('/laporan')->with('success', 'Transaksi berhasil diperbarui');
+
+} catch (\Exception $e) {
+
+    dd($e->getMessage());
+}
+
 }
 
     
+
+public function hapus($id)
+{
+   $transaksi= Transaksi::find($id);
+   $transaksi->delete();
+   return redirect('/laporan')->with('data berhasil dihapus'); 
+}
     
     
     
-    
-    
-    
+public function rampung(Request $request)
+    {
+        // Ambil data barang yang dipilih berdasarkan ID
+        $barangs = Barang::whereIn('id', array_keys($request->jumlah))->get();
+
+        // Hitung total harga
+        $total = 0;
+        foreach ($barangs as $barang) {
+            $total += $barang->harga * $request->jumlah[$barang->id];
+        }
+        $total += $request->metode_pengiriman;
+
+        // Kirim data ke tampilan selesai
+        return view('selesai', [
+            'barangs' => $barangs,
+            'alamat' => $request->alamat,
+            'metodePembayaran' => $request->metode_pembayaran,
+            'metodePengiriman' => $request->metode_pengiriman,
+            'total' => $total,
+            'jumlah' => $request->jumlah,
+        ]);
+    }
+
     
 }
 

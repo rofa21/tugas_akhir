@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Transaksi;
 
 class BarangadController extends Controller
 {
@@ -56,7 +57,7 @@ class BarangadController extends Controller
 {
     $barang = Barang::find($id);
 
-    $barang->update($request->only(['nama', 'merek', 'harga', 'ukuran', 'warna', 'stok_barang', 'deskripsi']));
+    $barang->update($request->only(['nama', 'merek', 'gambar','harga', 'ukuran', 'warna', 'stok_barang', 'deskripsi']));
 
     if ($request->hasFile('gambar')) {
         // Upload and update gambar
@@ -71,6 +72,14 @@ class BarangadController extends Controller
 
 public function destroy($id)
 {
+    $transaksis = Transaksi::where('id_barang', $id)->get();
+
+    // Menghapus setiap transaksi
+    foreach ($transaksis as $transaksi) {
+        $transaksi->delete();
+    }
+
+
    $barang= Barang::find($id);
    $barang->delete();
    return redirect('/admin')->with('data berhasil dihapus'); 

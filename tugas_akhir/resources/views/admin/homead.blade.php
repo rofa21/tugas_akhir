@@ -5,28 +5,19 @@
 <div class="content">
     <h1>Data Barang</h1>
     <div class="row mb-3">
-        <div class="col-md-4">
-            <input id="search" type="text" class="form-control" placeholder="Cari Barang...">
-        </div>
-        <div class="col-md-4">
-            <select id="categoryFilter" class="form-control">
-                <option value="all">Semua Kategori</option>
-                <option value="elektronik">Elektronik</option>
-                <option value="fashion">Fashion</option>
-                <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
-            </select>
-        </div>
-        <div class="col-md-4 text-right">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Tambah Barang</button>
-        </div>
+       
+       
+    <div class="col-md-4 ml-auto text-right">
+    <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Tambah Barang</button>
+</div>
     </div>
 
     <div class="table-wrapper">
         <table id="barangTable" class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Nama Barang</th>
+                    <th>No</th>
+                    <th>Nama Sepatu</th>
                     <th>Gambar</th>
                     <th>Merek</th>
                     <th>Harga</th>
@@ -40,7 +31,7 @@
             <tbody>
                 @foreach ($barang as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nama }}</td>
                         <td><img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" height="100px" width="100px"></td>
                         <td>{{ $item->merek }}</td>
@@ -51,8 +42,8 @@
                         <td>{{ $item->deskripsi }}</td>
                         <td>
                         <a class="btn btn-primary ml-3" href="/update/{{$item->id}}" role="button">Edit</a>
-                            <button class="btn btn-success btn-sm">Detail</button>
-                            <a class="btn btn-danger ml-3" href="/delete/{{$item->id}}" role="button">Hapus</a> 
+                     
+                            <a class="btn btn-danger ml-3" href="/delete/{{$item->id}}" role="button" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a> 
                         </td>
                     </tr>
                 @endforeach
@@ -75,7 +66,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="nama">Nama Barang</label>
+                        <label for="nama">Nama Sepatu</label>
                         <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="form-group">

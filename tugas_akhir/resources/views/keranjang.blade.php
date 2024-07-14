@@ -16,34 +16,36 @@
 
     <!-- Cart Items -->
     <form action="{{ route('keranjang.purchase') }}" method="POST" id="cart-form">
-        @csrf
-        @foreach($items as $item)
-        <div class="cart-item">
-            <div>
-                <input type="checkbox" name="selected_items[]" class="select-item" value="{{ $item['id'] }}" data-id="{{ $item['id'] }}">
-                <img src="{{ asset('img/' . $item['gambar']) }}" alt="{{ $item['nama'] }}">
-            </div>
-            <div class="product-details">
-                <span class="product-name">{{ $item['nama'] }}</span>
-                <span class="product-brand">{{ $item['merek'] }}</span>
-                <span class="product-size">{{ $item['ukuran'] }}</span>
-                <span class="product-color">{{ $item['warna'] ?? 'N/A' }}</span>
-                <span class="product-price">Rp. {{ number_format($item['harga'], 0, ',', '.') }}</span>
-                
-                <button class="btn btn-danger btn-sm remove-button" data-id="{{ $item['id'] }}">Hapus</button>
-            </div>
+    @csrf
+    @foreach($items as $item)
+    <div class="cart-item">
+        <div class="item-header">
+            <input type="checkbox" name="selected_items[]" class="select-item" value="{{ $item['id'] }}" data-id="{{ $item['id'] }}">
+            <img src="{{ asset('storage/' . $item['gambar']) }}" alt="{{ $item['nama'] }}" class="item-image">
         </div>
-        @endforeach
+        <div class="product-details">
+            <span class="product-name">{{ $item['nama'] }}</span>
+            <span class="product-brand">Merek: {{ $item['merek'] }}</span>
+            <span class="product-size">Ukuran: {{ $item['ukuran'] }}</span>
+            <span class="product-color">Warna: {{ $item['warna'] ?? 'N/A' }}</span>
+            <span class="product-price">Rp. {{ number_format($item['harga'], 0, ',', '.') }}</span>
+            <div class="product-button">
+            <button class="btn btn-danger btn-sm remove-button " data-id="{{ $item['id'] }}">Hapus</button>
+             </div>
+        </div>
+    </div>
+    @endforeach
 
-        <!-- Footer -->
-        <div class="cart-footer">
-            <div>
-                <input type="checkbox" id="select-all-footer">
-                <label for="select-all-footer">Pilih Semua</label>
-            </div>
-            <button type="submit" class="btn btn-success">Beli</button>
+    <!-- Footer -->
+    <div class="cart-footer">
+        <div>
+            <input type="checkbox" id="select-all-footer">
+            <label for="select-all-footer">Pilih Semua</label>
         </div>
-    </form>
+        <button type="submit" class="btn btn-success">Beli</button>
+    </div>
+</form>
+
 
     <!-- Summary -->
     <div class="summary">
@@ -52,6 +54,8 @@
             <span>Total Beli:</span>
             <span>Rp. {{ number_format(collect($items)->sum('harga'), 0, ',', '.') }}</span>
         </div>
+        <a class="btn btn-primary" href="/home" role="button">Kembali</a>
+
     </div>
 </div>
 
