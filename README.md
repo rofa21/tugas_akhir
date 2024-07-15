@@ -10,4 +10,6 @@ Jika pengguna kebingungan atau ingin bertanya lebih lanjut bisa hubungi kontak y
 Setelah pengguna selesai transaksi dan menggunakan website pengguna tinggal logut dari website
 
 ERD : https://github.com/rofa21/tugas_akhir.git
-Demo :  https://drive.google.com/drive/folders/1NMW4NTVYg99xF4ZEgxvVlAbjknH3d3_e?usp=sharing
+Demo :  video link Rizqi : https://drive.google.com/drive/folders/1NMW4NTVYg99xF4ZEgxvVlAbjknH3d3_e?usp=sharing
+        Video Link Zahid : https://drive.google.com/file/d/1g4lA_azog16ksbzypN1cWtccOf_pKhrh/view?usp=sharing
+        Video link aulia : https://drive.google.com/drive/folders/13fRwu8BRm-NFtMp1cyJfEt3KGoOZkTOw
